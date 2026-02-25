@@ -1,0 +1,15 @@
+iplanrio_desafio:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: data/terceirizados.duckdb
+      extensions:
+        - httpfs
+        - s3
+      settings:
+        s3_endpoint: 'localhost:4566'
+        s3_use_ssl: false
+        s3_access_key_id: 'test'
+        s3_secret_access_key: 'test'
+        s3_url_style: 'path'

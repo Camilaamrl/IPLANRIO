@@ -1,0 +1,17 @@
+name: 'iplanrio_desafio'
+version: '1.0.0'
+config-version: 2
+
+profile: 'iplanrio_desafio'
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+
+models:
+  iplanrio_desafio:
+    bronze:
+      materialized: view  # Camada bronze costuma ser leve
+    silver:
+      materialized: table # Camada prata vira tabela fixa
+    gold:
+      materialized: table # Camada ouro vira tabela fixa

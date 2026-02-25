@@ -1,0 +1,9 @@
+prefect>=3.0.0
+pandas
+pyarrow
+requests
+boto3
+duckdb
+fastapi
+uvicorn
+fastapi-cache2

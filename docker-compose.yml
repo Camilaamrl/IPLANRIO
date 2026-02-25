@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Peça 1: Onde guardaremos os arquivos (S3 Falso)
+  s3_storage:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+    volumes:
+      - "./infra/localstack:/var/lib/localstack"
+
+  # Peça 2: O Robo que agenda as tarefas (Prefect)
+  prefect_server:
+    image: prefecthq/prefect:3-latest
+    command: prefect server start
+    environment:
+      - PREFECT_SERVER_API_HOST=0.0.0.0
+    ports:
+      - "4200:4200"
+
+  # Peça 3: A sua aplicação (Onde a mágica acontece)
+  app:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_ENDPOINT_URL=http://s3_storage:4566
+    depends_on:
+      - s3_storage
+      - prefect_server

@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: s3_raw
+    meta:
+      external_location: "s3://iplanrio-bucket/raw/*.parquet"
+    tables:
+      - name: terceirizados_raw
