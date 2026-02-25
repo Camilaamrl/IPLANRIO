@@ -1,0 +1,6 @@
+echo "data/" >> .gitignore
+echo "target/" >> .gitignore
+echo "dbt_packages/" >> .gitignore
+echo ".venv/" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.duckdb" >> .gitignore
